@@ -13,6 +13,9 @@ const transactionSchema = new mongoose.Schema({
     clientUUID: {
         type: String,
         required: true
+    },
+    tagUUID: {
+        type: String
     }
 })
 
