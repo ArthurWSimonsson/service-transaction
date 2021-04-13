@@ -15,7 +15,7 @@ exports.removeTransaction = async req => {
 }
 
 exports.setTransactionAmount = async req => {
-    await Transaction.findOneAndUpdate({invoiceNr: req.invoiceNr}, {amount: req.amount}, {new: true});
+    return await Transaction.findOneAndUpdate({invoiceNr: req.invoiceNr}, {amount: req.amount}, {new: true});
 }
 
 payedTransaction = async req => {
