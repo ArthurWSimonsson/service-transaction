@@ -1,5 +1,6 @@
 const Transaction = require('../models/Transaction')
 
+// Adds a transaction to the transaction database
 exports.addTransaction = async req => {
     if(req.payment) {
         return await payedTransaction(req);
@@ -10,14 +11,17 @@ exports.addTransaction = async req => {
     return {};
 }
 
+// Removes a transaction from the transaction database 
 exports.removeTransaction = async req => {
     return await Transaction.deleteOne({invoiceNr: req.invoiceNr});
 }
 
+// Sets a new amount to a transaction
 exports.setTransactionAmount = async req => {
     return await Transaction.findOneAndUpdate({invoiceNr: req.invoiceNr}, {amount: req.amount}, {new: true});
 }
 
+// Adds transaction that has been payed
 payedTransaction = async req => {
     let transaction = {
         invoiceNr: req.invoiceNr,
@@ -31,6 +35,7 @@ payedTransaction = async req => {
     return {new: true}
 }
 
+// Adds future transaction
 futureTransaction = async req => {
     let transaction = {
         invoiceNr: req.invoiceNr,

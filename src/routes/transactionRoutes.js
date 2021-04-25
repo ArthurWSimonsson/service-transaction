@@ -1,6 +1,7 @@
 const transactionController = require('../controllers/transactionController')
 const tagController = require('../controllers/tagController')
 
+// Relevant routes for transaction api.
 const routes = async (app, options) => {
     app.post('/api/transaction', async (request, reply) => {
         try {

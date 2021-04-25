@@ -1,11 +1,13 @@
 const fetch = require('node-fetch');
 
+// Requests tag from tag service
 exports.requestTagUUID = async () => {
     let tagList = ['Office supplies', 'Food', 'Trip']
     tag = tagList[Math.floor((Math.random() * tagList.length))]
 
     let result; 
-    await fetch('http://localhost:3005/api/tag', {
+    // await fetch('http://localhost:3005/api/tag', {
+    await fetch('http://sidecar-service:1003/api/tag', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
