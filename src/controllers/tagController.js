@@ -4,7 +4,8 @@ exports.requestTagUUID = async (tagName) => {
     
 
     let result; 
-    await fetch('http://localhost:3005/api/tag', {
+    // await fetch('http://localhost:3005/api/tag', {
+    await fetch('http://sidecar-service:1003/api/tag', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+// Transaction schema
 const transactionSchema = new mongoose.Schema({
     amount: Number,
     status: {
