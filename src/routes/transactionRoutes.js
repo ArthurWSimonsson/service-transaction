@@ -3,9 +3,15 @@ const tagController = require('../controllers/tagController')
 
 const routes = async (app, options) => {
     app.post('/api/transaction', async (request, reply) => {
+        console.log("POST")
         try {
-            let tag = await tagController.requestTagUUID()
 
+            let tagList = ['Office supplies', 'Food', 'Trip']
+            let tagName = request.body.tagName || tagList[Math.floor((Math.random() * tagList.length))];
+            tag = await tagController.requestTagUUID(tagName);
+            if(tag.status != 200 || tag.err)
+                throw tag.err;
+            console.log("REQUEST:", tag);
             request.body.tag = tag.tag.uuid;
 
             console.log('req is ', request.body)
@@ -19,10 +25,11 @@ const routes = async (app, options) => {
             })
         }
         catch(err) {
+            console.log(err)
             reply.code(400).send({
                 status: 400,
                 msg: 'Transaction Error',
-                err: err.message
+                err: err
             })
         }
     })
@@ -47,7 +54,7 @@ const routes = async (app, options) => {
             reply.code(400).send({
                 status: 400,
                 msg: 'Transaction Error',
-                err: err.message
+                err: err
             })
         }
     })
@@ -67,7 +74,7 @@ const routes = async (app, options) => {
             reply.code(400).send({
                 status: 400,
                 msg: 'Transaction Error',
-                err: err.message
+                err: err
             })
         }
     })
