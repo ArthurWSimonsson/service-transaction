@@ -1,4 +1,4 @@
-const fastify = require('./server.js')
+const fastify = require('./src/server.js')
 
 const start = async () => {
     try {
