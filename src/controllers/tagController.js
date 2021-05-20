@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+require("dotenv").config();
 
 // Requests tag from tag service
 exports.requestTagUUID = async () => {
@@ -6,8 +7,7 @@ exports.requestTagUUID = async () => {
     tag = tagList[Math.floor((Math.random() * tagList.length))]
 
     let result; 
-    await fetch('http://localhost:3005/api/tag', {
-    // await fetch('http://sidecar-service:1003/api/tag', {
+    await fetch(process.env.TAG_URL, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
