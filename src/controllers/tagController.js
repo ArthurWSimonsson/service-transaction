@@ -1,10 +1,8 @@
 const fetch = require('node-fetch');
 require("dotenv").config();
 
-// Requests tag from tag service
-exports.requestTagUUID = async () => {
-    let tagList = ['Office supplies', 'Food', 'Trip']
-    tag = tagList[Math.floor((Math.random() * tagList.length))]
+exports.requestTagUUID = async (tagName) => {
+    
 
     let result; 
     await fetch(process.env.TAG_URL, {
@@ -13,7 +11,7 @@ exports.requestTagUUID = async () => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({name: tag})
+      body: JSON.stringify({name: tagName})
     })
     .then(res => res.json())
     .then(json => result = json)
